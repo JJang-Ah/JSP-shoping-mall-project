@@ -1,0 +1,24 @@
+package manager.product;
+
+import java.sql.Timestamp;
+
+// ProductDTO - 데이터를 객체로 저장하여 이동하는 클래스
+// 12개의 프로퍼티 - DB product 테이블과 매핑
+// 상품 아이디, 상품 종류, 상품 이름, 상품 가격, 상품 수량, 저자
+// 출판사, 출판일, 상품 이미지 이름, 상품 내용, 할인율, 등록 일시
+public class ProductDTO {
+	private int product_id;
+	private String product_kind;
+	private String product_name;
+	private int product_price;
+	private int product_count;
+	private String brand;
+	private String product_size;
+	private String product_weight;
+	private String product_image;
+	private String product_content;
+	private int discount_rate;
+	private Timestamp reg_date;
+
+	
+}

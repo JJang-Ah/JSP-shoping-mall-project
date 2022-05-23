@@ -26,7 +26,7 @@ public class ProductDAO {
 	// 상품 등록 메소드
 	public void insertProduct(ProductDTO product) {
 		String sql = "insert into product(product_kind, product_name, product_price, product_count"
-				+ ", author, publishing_com, publishing_date, product_image, product_content, discount_rate) "
+				+ ", brand, product_size, product_weight, product_image, product_content, discount_rate) "
 				+ "values(?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 		try {
 			conn = JDBCUtil.getConnection();
@@ -35,9 +35,9 @@ public class ProductDAO {
 			pstmt.setString(2,  product.getProduct_name());
 			pstmt.setInt(3, product.getProduct_price());
 			pstmt.setInt(4, product.getProduct_count());
-			pstmt.setString(5, product.getAuthor());
-			pstmt.setString(6, product.getPublishing_com());
-			pstmt.setString(7, product.getPublishing_date());
+			pstmt.setString(5, product.getBrand());
+			pstmt.setString(6, product.getProduct_size());
+			pstmt.setString(7, product.getProduct_weight());
 			pstmt.setString(8, product.getProduct_image());
 			pstmt.setString(9, product.getProduct_content());
 			pstmt.setInt(10, product.getDiscount_rate());
@@ -95,14 +95,10 @@ public class ProductDAO {
 		String sql = "select count(*) from product where ";
 		int cnt = 0;
 		
-		if(s_search.equals("제목")) {
+		if(s_search.equals("이름")) {
 			sql += "product_name ";
-		}else if(s_search.equals("저자")) {
-			sql += "author ";
-		}else if(s_search.equals("출판사")) {
-			sql += "publishing_com ";
-		}else if(s_search.equals("내용")) {
-			sql += "product_content ";
+		}else if(s_search.equals("브랜드")) {
+			sql += "brand ";
 		}
 		sql+= "like ?";
 		
@@ -143,15 +139,14 @@ public class ProductDAO {
 				product.setProduct_name(rs.getNString("product_name"));
 				product.setProduct_price(rs.getInt("product_price"));
 				product.setProduct_count(rs.getInt("product_count"));
-				product.setAuthor(rs.getString("author"));
-				product.setPublishing_com(rs.getString("publishing_com"));
-				product.setPublisging_date(rs.getString("publishing_date"));
+				product.setBrand(rs.getString("brand"));
+				product.setProduct_size(rs.getString("product_size"));
+				product.setProduct_weight(rs.getString("product_weight"));
 				product.setProduct_image(rs.getString("product_image"));
 				product.setDiscount_rate(rs.getInt("discount_rate"));
 				product.setReg_date(rs.getTimestamp("reg_date"));
 				productList.add(product);
 			}
-			
 		} catch(Exception e) {
 			System.out.println("getProductList 메소드: " + e.getMessage());
 			e.printStackTrace();
@@ -182,9 +177,9 @@ public class ProductDAO {
 				product.setProduct_name(rs.getNString("product_name"));
 				product.setProduct_price(rs.getInt("product_price"));
 				product.setProduct_count(rs.getInt("product_count"));
-				product.setAuthor(rs.getString("author"));
-				product.setPublishing_com(rs.getString("publishing_com"));
-				product.setPublisging_date(rs.getString("publishing_date"));
+				product.setBrand(rs.getString("brand"));
+				product.setProduct_size(rs.getString("product_size"));
+				product.setProduct_weight(rs.getString("product_weight"));
 				product.setProduct_image(rs.getString("product_image"));
 				product.setDiscount_rate(rs.getInt("discount_rate"));
 				product.setReg_date(rs.getTimestamp("reg_date"));
@@ -205,14 +200,10 @@ public class ProductDAO {
 		List<ProductDTO> productList = new ArrayList<ProductDTO>();
 		ProductDTO product = null;
 		String sql = "select * from product where ";
-		if(s_search.equals("제목")) {
+		if(s_search.equals("이름")) {
 			sql += "product_name ";
-		}else if(s_search.equals("저자")) {
-			sql += "author ";
-		}else if(s_search.equals("출판사")) {
-			sql += "publishing_com ";
-		}else if(s_search.equals("내용")) {
-			sql += "product_content ";
+		}else if(s_search.equals("브랜드")) {
+			sql += "brand ";
 		}
 		sql+= "like ? order by product_id desc limit ?, ?";
 		
@@ -232,9 +223,9 @@ public class ProductDAO {
 				product.setProduct_name(rs.getNString("product_name"));
 				product.setProduct_price(rs.getInt("product_price"));
 				product.setProduct_count(rs.getInt("product_count"));
-				product.setAuthor(rs.getString("author"));
-				product.setPublishing_com(rs.getString("publishing_com"));
-				product.setPublisging_date(rs.getString("publishing_date"));
+				product.setBrand(rs.getString("brand"));
+				product.setProduct_size(rs.getString("product_size"));
+				product.setProduct_weight(rs.getString("product_weight"));
 				product.setProduct_image(rs.getString("product_image"));
 				product.setDiscount_rate(rs.getInt("discount_rate"));
 				product.setReg_date(rs.getTimestamp("reg_date"));
@@ -267,9 +258,9 @@ public class ProductDAO {
 			product.setProduct_name(rs.getNString("product_name"));
 			product.setProduct_price(rs.getInt("product_price"));
 			product.setProduct_count(rs.getInt("product_count"));
-			product.setAuthor(rs.getString("author"));
-			product.setPublishing_com(rs.getString("publishing_com"));
-			product.setPublisging_date(rs.getString("publishing_date"));
+			product.setBrand(rs.getString("brand"));
+			product.setProduct_size(rs.getString("product_size"));
+			product.setProduct_weight(rs.getString("product_weight"));
 			product.setProduct_image(rs.getString("product_image"));
 			product.setProduct_content(rs.getString("product_content"));
 			product.setDiscount_rate(rs.getInt("discount_rate"));
@@ -286,8 +277,8 @@ public class ProductDAO {
 	
 	// 상품 수정 메소드
 	public void updateProduct(ProductDTO product) {
-		String sql = "update product set product_kind=?, product_name=?, product_price=?, product_count=?, author=?, "
-				+ "publishing_com=?, publishing_date=?, product_image=?, product_content=?, discount_rate=? "
+		String sql = "update product set product_kind=?, product_name=?, product_price=?, product_count=?, brand=?, "
+				+ "product_size=?, product_weight=?, product_image=?, product_content=?, discount_rate=? "
 				+ "where product_id=?";
 		
 		try {
@@ -297,9 +288,9 @@ public class ProductDAO {
 			pstmt.setString(2, product.getProduct_name());
 			pstmt.setInt(3, product.getProduct_price());
 			pstmt.setInt(4, product.getProduct_count());
-			pstmt.setString(5, product.getAuthor());
-			pstmt.setString(6, product.getPublishing_com());
-			pstmt.setString(7, product.getPublishing_date());
+			pstmt.setString(5, product.getBrand());
+			pstmt.setString(6, product.getProduct_size());
+			pstmt.setString(7, product.getProduct_weight());
 			pstmt.setString(8, product.getProduct_image());
 			pstmt.setString(9, product.getProduct_content());
 			pstmt.setInt(10, product.getDiscount_rate());
@@ -341,8 +332,8 @@ public class ProductDAO {
 	public List<ProductDTO> getProductList(String[] nProducts, int chk) {
 		List<ProductDTO> productList = new ArrayList<ProductDTO>();
 		ProductDTO product = null;
-		String sql1 = "select * from product where product_kind = ? order by publishing_date desc limit 3";
-		String sql2 = "select * from product where product_kind = ? order by publishing_date desc limit 1";
+		String sql1 = "select * from product where product_kind = ? order by reg_date desc limit 3";
+		String sql2 = "select * from product where product_kind = ? order by reg_date desc limit 1";
 		try {
 			conn = JDBCUtil.getConnection();
 			for(String s : nProducts) {
@@ -412,8 +403,9 @@ public class ProductDAO {
 				product.setProduct_kind(rs.getString("product_kind"));
 				product.setProduct_name(rs.getString("product_name"));
 				product.setProduct_price(rs.getInt("product_price"));
-				product.setAuthor(rs.getString("author"));
-				product.setPublishing_com(rs.getString("publishing_com"));
+				product.setBrand(rs.getString("brand"));
+//				product.setProduct_size(rs.getString("product_size"));
+//				product.setProduct_weight(rs.getString("product_weight"));
 				product.setProduct_image(rs.getString("product_image"));
 				product.setDiscount_rate(rs.getInt("discount_rate"));
 				productList.add(product);
