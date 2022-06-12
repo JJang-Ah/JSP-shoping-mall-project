@@ -51,11 +51,9 @@ String product_kind = multi.getParameter("product_kind");
 String product_name = multi.getParameter("product_name");
 int product_price = Integer.parseInt(multi.getParameter("product_price")); // 넘어오는 값은 String으로 오기때문
 int product_count = Integer.parseInt(multi.getParameter("product_count"));
-String brand = multi.getParameter("Brand");
+String brand = multi.getParameter("brand");
 String product_size = multi.getParameter("product_size");
 String product_weight = multi.getParameter("product_weight");
-//String product_image = multi.getParameter("product_image"); // 이름을 얻을 수 없다.
-// String product_content = multi.getParameter("product_content");
 int discount_rate = Integer.parseInt(multi.getParameter("discount_rate"));
 
 // ProductDTO 객체 생성하여 setter 메소드를 사용하여 값을 설정한다.

@@ -20,7 +20,7 @@ a { text-decoration: none; font-size: 0.95em; font-weight: bold;}
 /* 중단 - 상품 등록 테이블*/
 table { width: 100%; border: 1px solid gray; border-collapse: collapse;
 border-top: 5px; border-bottom: 5px; border-left: hidden; border-right: hidden;}
-tr { height: 35px;}
+tr { height: 50px;}
 td, th { border: 1px solid gray;}
 th { background: #d8f4e6;}
 td { padding-left: 5px;}
@@ -100,7 +100,11 @@ if(managerId == null) {%>
 	</script>
 <%}%>
 <div id="container">
-	<div class="m_title"><a href="../managerMain.jsp">자아캠핑</a></div>
+	<div>
+		<jsp:include page="../../mall/shopTop.jsp"></jsp:include>
+	</div>
+
+	<div class="title"><a href="../managerMain.jsp">자아캠핑</a></div>
 	<div class="s_title">상품 등록</div>
 	
 	<form action="productRegisterPro.jsp" method="post" name="registerForm" enctype="multipart/form-data">
@@ -176,7 +180,7 @@ if(managerId == null) {%>
 			</tr>
 			<tr>
 				<th>제품 크기</th>
-				<td><input type="text" name="product_size"></td>
+				<td><input type="text" name="product_size" size="70"></td>
 			</tr>
 			<tr>
 				<th>제품 무게</th>

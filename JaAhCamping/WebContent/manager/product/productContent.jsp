@@ -22,9 +22,9 @@ a { text-decoration: none; font-size: 0.95em; font-weight: bold;}
 /* 중단 - 상품 등록 테이블*/
 table { width: 100%; border: 1px solid gray; border-collapse: collapse;
 border-top: 5px; border-bottom: 5px; border-left: hidden; border-right: hidden;}
-tr { height: 35px;}
+tr { height: 50px;}
 td, th { border: 1px solid #705e7b;}
-th { background: #e6c9e1;}
+th { background: #dee2e6;}
 td { padding-left: 5px;}
 
 /* 중단 - 테이블 안의 입력상자*/
@@ -142,7 +142,11 @@ ProductDTO product = productDAO.getProduct(product_id);
 
 %>
 <div id="container">
-	<div class="m_title"><a href="../managerMain.jsp">자아캠핑</a></div>
+	<div>
+		<jsp:include page="../../mall/shopTop.jsp"></jsp:include>
+	</div>
+
+	<div class="title"><a href="../managerMain.jsp">자아캠핑</a></div>
 	<div class="s_title">상품 정보 확인</div>
 	
 	<form action="productUpdatePro.jsp" method="post" name="updateForm" enctype="multipart/form-data">

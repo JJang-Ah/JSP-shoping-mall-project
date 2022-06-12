@@ -7,13 +7,14 @@
 <title>관리자 로그인 폼</title>
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Do+Hyeon&family=Hammersmith+One&family=Paytone+One&display=swap');
-#container { width: 300px; margin: 0 auto;}
 a { text-decoration: none; color: black;}
 /* 상단 - 메인, 서브 타이틀 */
-.m_title { font-family:'Paytone One', sans-serif; font-size: 3em; text-align: center;}
-.s_title { font-family:'Do Hyeon', sans-serif; font-size: 2em; text-align: center; margin-bottom: 30px}
+.m_title { font-family:'Paytone One', sans-serif; text-align: center;}
+
+.s_title { font-family:'Do Hyeon', sans-serif; font-size: 2em; text-align: center; margin-top: 40px; margin-bottom: 30px;}
 
 /* 중단 - 로그인 박스 */
+.a_box { width: 300px; margin: 60px auto;}
 .b_box { border: 1px solid lightgray; padding: 5px; margin: 10px;}
 .b_box input[type='text'], .b_box input[type='password'] { height: 30px; padding-left: 35px; border: none;}
 .b_box input[type='text']:focus, .b_box input[type='password']:focus { outline: none;} 
@@ -49,7 +50,8 @@ document.addEventListener("DOMContentLoaded", function() {
 <body>
 
 <div id="container">
-	<div class="m_title"><a href="#">AH MALL</a></div>
+	<jsp:include page="../../mall/shopTop.jsp"></jsp:include>	
+	
 	<div class="s_title">관리자 로그인</div>
 	
 	<form action="managerLoginPro.jsp" method="post" name="managerLoginForm">

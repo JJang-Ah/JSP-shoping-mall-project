@@ -17,7 +17,6 @@ a { text-decoration: none; color: black;}
 /* 상단 - 메인, 서브 타이틀 */
 .m_title { font-family:'Paytone One', sans-serif; font-size: 3em; text-align: center;}
 .s_title { font-family:'Do Hyeon', sans-serif; font-size: 2em; text-align: center; margin-bottom: 30px}
-a { text-decoration: none; font-size: 0.95em; font-weight: bold;}
 
 /* 상단 - 전체 상품수, 아이디, 로그아웃, 상품등록*/
 .top_info { margin-bottom: 10px; text-align: right;}
@@ -31,13 +30,15 @@ a { text-decoration: none; font-size: 0.95em; font-weight: bold;}
 .c_select { width: 155px; height: 25px;}
 .c_input { width: 200px; height: 20px;}
 .c_submit { width: 82px; height: 27px; border: none; background: #000; color: #fff;
-    font-size: 0.8em; border-radius: 5px; font-weight: bold;}
+    font-size: 0.8em; border-radius: 5px; font-weight: bold; cursor: pointer;}
+.c_submit:hover { background: #fff; color: #000; border: 1px solid black;}
 /* 중단 - 상품 정보 테이블 */
-table { width: 100%; border: 1px solid black; border-collapse: collapse; font-size: 0.9em;}
-tr { height: 30px;}
+.a_table { width: 100%; border: 1px solid lightgray; border-collapse: collapse; font-size: 0.9em; border-radius: 10px;}
+tr { height: 150px;}
+#a_table_top { height: 70px;}
 /* tr:nth-child(2n) { background: #e9ecef;} */
 tr:nth-child(2n+1) { background: #f8f9fa;}
-th, td { border: 1px solid black;}
+th, td { border: 1px solid lightgray;}
 th { background: #dee2e6;}
 .center { text-align: center;}
 .left { text-align: left; padding-left: 2px;}
@@ -117,8 +118,12 @@ if(search.equals("1")) {
 int number = cnt - ((currentPage-1) * pageSize); 
 %>
 <div id="container">
+	<div>
+		<jsp:include page="../../mall/shopTop.jsp"></jsp:include>
+	</div>
+
    <%-- 상단: 타이틀 --%>
-   <div class="m_title"><a href="../managerMain.jsp">자아캠핑 관리자 페이지</a></div>
+   <div class="title"><a href="../managerMain.jsp">자아캠핑 관리자 페이지</a></div>
    <div class="s_title"><a href="productList.jsp">상품 목록</a></div>
    
    <%-- 상단: 아이디, 로그아웃, 상품등록 --%>
@@ -135,10 +140,8 @@ int number = cnt - ((currentPage-1) * pageSize);
       <input type="hidden" name="search" value="1">
       <span class="s_search1">
          <select name="s_search" class="c_select">
-            <option selected>제목</option>
-            <option>저자</option>
-            <option>출판사</option>
-            <option>내용</option>
+            <option selected>이름</option>
+            <option>브랜드</option>
          </select>
       </span>
       <span class="s_search2"><input type="text" name="i_search" class="c_input"></span>
@@ -147,8 +150,8 @@ int number = cnt - ((currentPage-1) * pageSize);
    </div>
    
    <%-- 중단: 상품 테이블 --%>
-   <table>
-      <tr>
+   <table id="a_table">
+      <tr id="a_table_top">
          <th width="4%">No</th>
          <th width="9%">분류</th>
          <th width="5%">사진</th>
