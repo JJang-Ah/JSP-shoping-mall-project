@@ -10,9 +10,12 @@
 <title>Insert title here</title><%!  %>
 <style>
 
+#product_kindName { text-align: center; margin-bottom: 20px; font-size: 40px; font-weight: bold;}
+.d_kind2 { text-align: center; margin-bottom: 20px;}
 /*상품 나열 */
 .c_product { display: inline-block; width: 240px; height: 350px; margin: 10px; padding: 15px; position: relative;}
-.c_p2 { font-weight: bold; display: inline; overflow: hidden;}
+.c_p2 { font-weight: bold; display: inline;}
+.c_p2 span {overflow: hidden;}
 .c_p3_price { font-size: 1.1em; font-weight: bold;}
 .s_p_discount { color: red; font-weight: bold; font-size: 0.8em;}
 
@@ -50,6 +53,13 @@ figcaption div:hover {
 }
 
 
+/* 하단 - 페이징 영역*/
+#paging { text-align: center; margin-top: 20px;}
+#pBox { display: inline-block; width: 22px; height: 22px; padding: 5px; margin: 5px;}
+#pBox:hover { background: #495057; color: white; font-weight: bold; border-radius: 10px;}
+.pBox_c { background: #495057; color: white; font-weight: bold; border-radius: 10px;}
+.pBox_b { font-weight: 900;}
+
 </style>
 <script>
 
@@ -67,7 +77,7 @@ if(product_kind == null) product_kind = "110";
 
 //################ 페이징(paging) 처리 
 //페이징(paging) 처리를 위한 변수 선언
-int pageSize = 12; // 1페이지에 12건의 게시글을 표시
+int pageSize = 8; // 1페이지에 12건의 게시글을 표시
 String pageNum = request.getParameter("pageNum");
 if(pageNum == null) pageNum = "1";
 
@@ -84,11 +94,55 @@ ProductDAO productDAO = ProductDAO.getInstance();
 List<ProductDTO> productList = productDAO.getProductList(startRow, pageSize, product_kind);
 int cnt = productDAO.getProductCount(product_kind);
 
+
+String product_kindName = "";
+switch(product_kind) {
+case "110": product_kindName = "텐트"; break;
+case "120": product_kindName = "텐트관련품"; break;
+case "130": product_kindName = "타프"; break;
+case "140": product_kindName = "폴대/펙/스트링/스토퍼"; break;
+case "150": product_kindName = "공구"; break;
+case "160": product_kindName = "기타(텐트/타프)"; break;
+case "210": product_kindName = "의자"; break;
+case "220": product_kindName = "테이블"; break;
+case "230": product_kindName = "선반/수납기구"; break;
+case "240": product_kindName = "야전침대"; break;
+case "250": product_kindName = "퍼니쳐"; break;
+case "260": product_kindName = "기타(의자/테이블/침대)"; break;
+
+case "310": product_kindName = "버너"; break;
+case "320": product_kindName = "코펠"; break;
+case "330": product_kindName = "취사용품"; break;
+case "340": product_kindName = "식기류"; break;
+case "350": product_kindName = "기타(버너/코펠/취사용품)"; break;
+
+case "410": product_kindName = "랜턴"; break;
+case "420": product_kindName = "후레쉬"; break;
+case "430": product_kindName = "난로"; break;
+case "440": product_kindName = "액세서리"; break;
+case "450": product_kindName = "기타(랜턴/난로)"; break;
+case "460": product_kindName = "기타(의자/테이블/침대)"; break;
+
+case "510": product_kindName = "화로대"; break;
+case "520": product_kindName = "바베큐 그릴"; break;
+case "530": product_kindName = "토치"; break;
+case "540": product_kindName = "바베큐 소품"; break;
+case "550": product_kindName = "기타(화로/바베큐)"; break;
+
+case "610": product_kindName = "침낭"; break;
+case "620": product_kindName = "베개/쿠션/방석"; break;
+case "630": product_kindName = "매트"; break;
+case "640": product_kindName = "해먹"; break;
+case "650": product_kindName = "커버"; break;
+case "660": product_kindName = "기타(침낭/매트/해먹)"; break;
+}
 %>
 </head>
 <body>
 <div id="container">
-
+	<div id="product_kindName">
+		<span><%=product_kindName %></span>
+	</div>
 	<div class="d_kind2">상품수: 총 <b class="s_kind21"><%=cnt %></b>건</div>
 	<div class="d_kind3">
 		<%for(ProductDTO product: productList) { %>
@@ -105,7 +159,7 @@ int cnt = productDAO.getProductCount(product_kind);
 			</figcaption>
 			
 		</div><% } %>
-
+	</div>
 
 	   <%-- 페이징 처리 --%>
 	   <div id="paging">

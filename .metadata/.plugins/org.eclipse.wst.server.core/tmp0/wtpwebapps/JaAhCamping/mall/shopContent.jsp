@@ -27,7 +27,7 @@
 /* 구역2: 오른쪽 상단, 상품 기본 정보, 버튼 */
 .s2 { width: 44%; float: left; background: #f8f9fa; padding: 30px;}
 .s2 > div { margin-bottom: 23px;}
-.s2_d1 { font-size: 1.5em; font-weight: bold; color: #32708d;}
+.s2_d1 { font-size: 1.5em; font-weight: bold; color: #222222;}
 .s2_d2 { font-size: 0.9em; colot: gray;}
 .s2 .ss { display: inline-block; width: 100px; font-size: 0.9em; color: gray;}
 .s2_d3 span:nth-child(2) { font-weight: bold; color: gray;}
@@ -38,18 +38,18 @@
 .s2_d7 span:nth-child(3) { font-size: 0.9em; color: gray;}
 .btns { margin-top: 40px; text-align: center;}
 .btns input { width: 250px; height: 60px; border: 0; font-size: 1.1em; cursor: pointer;}
-.btns #btn_cart { background: #2f9e77; color: #fff; margin-right: 10px;}
-.btns #btn_cart:hover { background: #fff; color: #2f9e77; border: 2px solid #2f9e77; font-weight: bold;}
-.btns #btn_buy { background: #1e9faa; color: #fff; margin-left: 10px;}
-.btns #btn_buy:hover { background: #fff; color: #2f9e77; border: 2px solid #2f9e77; font-weight: bold;}
+.btns #btn_cart { background: #444444; color: #fff; margin-right: 10px;}
+.btns #btn_cart:hover { background: #fff; color: black; border: 2px solid #444444; font-weight: bold;}
+.btns #btn_buy { background: white; color: #black; margin-left: 10px; border: 1px solid black;}
+.btns #btn_buy:hover { background: #444444; color: white; font-weight: bold;}
 
 /* 구역3: 하단, 상품 내용, 상품 리뷰 */
 .t_line { border: 1px solid #eec9ef; margin: 30px 0; clear: both;}
 .s3 { clear: both;}
-.s3_c1 { background: #32708d; padding: 10px; border-radius: 5px; margin-bottom: 30px;}
-.s3_c1 span { display: inline-block; width: 120px; height: 30px; padding: 20px; 
-margin: 20px 20px; text-align: center; line-height: 30px; border-radius: 5px; color: #fff; font-size: 1.1em; cursor: pointer;}
-.s3_c1 span:hover { border: 2px solid #fff;	text-shadow:  1px 1px 2px beige;}
+.s3_c1 { background: #555555; padding: 10px; border-radius: 5px; margin-bottom: 30px;}
+.s3_c1 span { display: inline-block; width: 140px; height: 30px; padding: 20px; border: 1px solid #444444;
+margin: 0px 20px; text-align: center; line-height: 30px; border-radius: 5px; color: #fff; font-size: 1.1em; cursor: pointer;}
+.s3_c1 span:hover { border: 1px solid #fff;	text-shadow:  1px 1px 2px beige;}
 .s3_c2 { line-height: 40px; text-align: justify; padding: 20px;}
 
 .s3_c3 .s3_review { padding: 20px; line-height: 20px; text-align: justify; width: 100%; height: 200px; margin-bottom: 40px;}
@@ -63,7 +63,7 @@ margin: 20px 20px; text-align: center; line-height: 30px; border-radius: 5px; co
 /* 하단 - 페이징 영역*/
 #paging { text-align: center; margin-top: 20px;}
 #paging a { color: #000;}
-#pBox { display: inline-block; width: 22px; height: 22px; padding: 5px; margin: 5px;}
+#pBox { display: inline-block; width: 60px; height: 32px; padding: 5px; margin: 5px;}
 #pBox:hover { background: #f1617d; color: white; font-weight: bold; border-radius: 50%;}
 .pBox_c { background: #f1617d; color: white; font-weight: 900; border-radius: 50%;}
 .pBox_b { font-weight: 900;}

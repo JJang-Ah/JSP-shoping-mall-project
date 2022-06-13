@@ -6,6 +6,7 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <link href="https://fonts.googleapis.com/css2?family=Do+Hyeon&display=swap" rel="stylesheet">
+<link href="/JaAhCamping/icons/camping_small.png" rel="shortcut icon" type="image/x-icon">
 
 <style>
 #container { width: 1200px; margin: 20px auto;}
@@ -67,7 +68,7 @@ String memberId = (String)session.getAttribute("memberId");
 				<div class="s_menu">
 					<ul>
 						<li class="s_m_list"><a href="#">텐트</a></li>
-						<li class="s_m_list"><a href="#">텐트관련품</a></li>
+						<li class="s_m_list"><a href="shopAll.jsp?product_kind=120">텐트관련품</a></li>
 						<li class="s_m_list"><a href="#">타프</a></li>
 						<li class="s_m_list"><a href="#">폴대/펙/스트링/스토퍼</a></li>
 						<li class="s_m_list"><a href="#">공구</a></li>

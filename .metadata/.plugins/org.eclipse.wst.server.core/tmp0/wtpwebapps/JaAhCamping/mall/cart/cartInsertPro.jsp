@@ -14,8 +14,8 @@ request.setCharacterEncoding("utf-8");
 String memberId = (String)session.getAttribute("memberId");
 
 if(memberId == null) {
-	out.print("<script>alert('로그인을 해주세요.')</script>");
-	out.print("location='../logon/memberLoginForm.jsp';");
+	out.print("<script>alert('로그인을 해주세요.');");
+	out.print("location='../../logon/memberLoginForm.jsp';</script>");
 }
 %>
 <jsp:useBean id="cart" class="cart.CartDTO"></jsp:useBean>

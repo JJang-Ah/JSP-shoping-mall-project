@@ -10,12 +10,13 @@
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/bxslider/4.2.12/jquery.bxslider.css">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 <script src="https://cdn.jsdelivr.net/bxslider/4.2.12/jquery.bxslider.min.js"></script>
-<link href="../icons/camping_small.png" rel="shortcut icon" type="image/x-icon">
+<link href="/JaAhCamping/icons/camping_small.png" rel="shortcut icon" type="image/x-icon">
 
 <style>
 
-.new_items img { width: 150px; height: 200px;}
-.c_new_img { width: 500px; height: 600px;}
+.new_items {text-align: center;}
+.new_items div { margin: 10px auto;}
+.new_items img { width: 200px; height: 250px;}
 </style>
 <script>
 

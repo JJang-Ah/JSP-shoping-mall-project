@@ -77,18 +77,6 @@ document.addEventListener("DOMContentLoaded", function() {
 			alert('상품 수량을 입력하시오.');
 			return;
 		}
-		if(!form.author.value) {
-			alert('저자를 입력하시오.');
-			return;
-		}
-		if(!form.publishing_com.value) {
-			alert('출판사를 입력하시오.');
-			return;
-		}
-		if(!form.publishing_date.value) {
-			alert('출판일을 입력하시오.');
-			return;
-		}
 		if(!form.product_content.value) {
 			alert('상품 내용을 입력하시오.');
 			return;

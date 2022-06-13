@@ -127,7 +127,7 @@ public class CartDAO {
 			conn = JDBCUtil.getConnection();
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setInt(1, cart_id);
-			pstmt.executeQuery();
+			pstmt.executeUpdate();
 		} catch(Exception e) {
 			System.out.println("=> deleteCart() 메소드 실행 에러");
 			e.printStackTrace();
