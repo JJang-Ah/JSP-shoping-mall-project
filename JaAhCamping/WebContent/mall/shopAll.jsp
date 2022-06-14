@@ -60,7 +60,7 @@ List<ProductDTO> goodProductList = productDAO.getGoodProductList();
 		<main> <%-- 메인1: 100번대와 200번대에서 신상품을 3개씩 가져와서 bx-slider로 노출 --%>
 			
 			<div class="new_items">
-				<h3>신상품</h3>
+				<h3>전체 신상품</h3>
 				<div class="slider" id="slider">
 				<%for(ProductDTO product : goodProductList) {%>
 					<a href="shopContent.jsp?product_id=<%=product.getProduct_id()%>"><img src="/images/<%=product.getProduct_image()%>" class="c_new_img"></a>

@@ -17,14 +17,14 @@ a { text-decoration: none; color: black;}
 .c_logout a { color: #705e7b;}
 
 /* 테이블 메뉴 */
-table { width: 500px; border: 1px solid black; border-collapse: collapse; margin: 0 auto;
+table { width: 500px; border: 1px solid black; border-collapse: collapse; margin: 0 auto; margin-bottom: 100px;
 border-top: 3px solid black; border-bottom: 3px solid gray; border-left: hidden; border-right: hidden;}
 table tr { height: 50px;}
 table th { border: 1px solid black;}
 .logout_row { background: #dddce9;}
-.title_row { background: #dee2e6; font-size: 1.1em;}
-.a_row { background: #dddce9; opacity: 0.7; cursor: pointer;}
-.a_row:hover .a_row a{ color: black; font-weight: bold;}
+.title_row { background: #aaaaaa; font-size: 1.1em;}
+.a_row { background: #dddddd; opacity: 0.7; cursor: pointer;}
+.a_row:hover{ color: black; font-weight: bold;}
 </style>
 </head>
 <body>
@@ -42,7 +42,7 @@ if(managerId == null) {
 	<div class="title"><a href="#">자아캠핑</a></div>
 	<div class="s_title">관리자 페이지</div>
 	<div class="c_logout"><a href="logon/managerLogout.jsp">로그아웃</a></div>
-	<table>
+	<table class="m_table">
 		<tr class="title_row"><th>상품 관리</th></tr>
 		<tr class="a_row"><th><a href="product/productRegisterForm.jsp">상품 등록</a></th></tr>
 		<tr class="a_row"><th><a href="product/productList.jsp">상품 목록(수정/삭제)</a></th></tr>

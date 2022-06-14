@@ -296,6 +296,10 @@ if(product.getProduct_image2().equals("nothing.jpg")) product.setProduct_image2(
 			<div class="s2_d3"><span class="ss">정가</span><span><%=df.format(product.getProduct_price()) %>원</span></div>
 			<div class="s2_d4"><span class="ss">판매가</span><span><b><%=df.format(sale_price) %></b>원</span></div>
 			<div class="s2_d5"><span class="ss">할인율</span><span><b><%=product.getDiscount_rate()%>%</b></span></div>
+			
+			<div class="s2_d3"><span class="ss">크기</span><span><%=product.getProduct_size() %></span></div>
+			<div class="s2_d3"><span class="ss">무게</span><span><%=product.getProduct_weight() %></span></div>
+			
 			<div class="s2_d6"><span class="ss">구매수량</span><input type="number" name="buy_count" id="buy_count" value="1" min="1" max="99"></div>
 			<div class="s2_d7"><span class="ss">배송안내</span> <br><br>
 			

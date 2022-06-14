@@ -11,17 +11,17 @@ a { text-decoration: none; color: black;}
 /* 상단 - 메인, 서브 타이틀 */
 .m_title { font-family:'Paytone One', sans-serif; text-align: center;}
 
-.s_title { font-family:'Do Hyeon', sans-serif; font-size: 2em; text-align: center; margin-top: 40px; margin-bottom: 30px;}
+.s_title { font-family:'Do Hyeon', sans-serif; font-size: 2em; text-align: center; margin-top: 80px; margin-bottom: 0;}
 
 /* 중단 - 로그인 박스 */
-.a_box { width: 300px; margin: 60px auto;}
+.a_box { width: 300px; margin: 120px auto;}
 .b_box { border: 1px solid lightgray; padding: 5px; margin: 10px;}
 .b_box input[type='text'], .b_box input[type='password'] { height: 30px; padding-left: 35px; border: none;}
 .b_box input[type='text']:focus, .b_box input[type='password']:focus { outline: none;} 
 .b_box input[type='text'] { background: url('../../icons/login_id.png') no-repeat; background-size: 25px; background-position: left center;}
 .b_box input[type='password'] { background: url('../../icons/login_pwd.png') no-repeat; background-size: 22px; background-position: left center;}
 .c_box { padding: 0; margin: 10px;}
-.c_box input[type='button'] { width: 280px; height: 45px; border: none; background: #5e869c; color: #fff; font-weight: bold; font-size: 1.03em;}
+.c_box input[type='button'] { width: 280px; height: 45px; border: none; background: #444444; color: #fff; font-weight: bold; font-size: 1.03em;}
 </style>
 
 <script>
@@ -69,6 +69,9 @@ document.addEventListener("DOMContentLoaded", function() {
 		</div>
 	
 	</form>
+	
+	<jsp:include page="../../mall/shopBottom.jsp"></jsp:include>	
+	
 </div>
 
 </body>

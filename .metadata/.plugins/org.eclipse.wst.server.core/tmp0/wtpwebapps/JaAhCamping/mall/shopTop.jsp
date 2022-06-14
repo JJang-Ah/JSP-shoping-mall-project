@@ -21,12 +21,12 @@ a { text-decoration: none; color: black;}
 #title_sub_go { font-size: 0.8em;}
 
 /* 메뉴 */
-.m_menu { list-style: none; font-weight: bold; color: lightgray;}
+.m_menu { list-style: none; font-family: 'Do Hyeon', sans-serif; color: #333333;}
 .m_menu .m_m_list { display: inline-block; float: left; width: 150px; height: 40px; 
 margin-right: 10px; border: 1px solid lightgray; text-align: center; line-height: 40px; border-radius: 10px;}
 .m_menu > .m_m_list { position: relative;}
 .m_menu > .m_m_list:hover >.s_menu { display: block;}
-.m_m_list > .s_menu { display: none; position: absolute; top: 41px; border: 1px solid lightgray; background: white; border-radius: 10px;}
+.m_m_list > .s_menu { display: none; position: absolute; top: 41px; border: 1px solid lightgray; background: white; border-radius: 10px; z-index: 10;}
 .s_menu .s_m_list { text-align: left; width: 200px;}
 
 .t_line { clear: both; border: 1px solid lightgray; margin-top: 100px;}
@@ -49,9 +49,9 @@ String memberId = (String)session.getAttribute("memberId");
 			<a href="http://localhost:8088/JaAhCamping/logon/memberLoginForm.jsp"><span>로그인</span></a>&ensp; |&ensp;
 			<a href="http://localhost:8088/JaAhCamping/member/memberJoinForm.jsp"><span>회원가입</span></a>&ensp; |&ensp;
 		<%} else { %>
-			<a href="../member/memberInfoForm.jsp"><span><%=memberId %>님</span></a>&ensp; |&ensp;
-			<a href="../logon/memberLogout.jsp"><span>로그아웃</span></a>&ensp; |&ensp;
-			<a href="cart/cartList.jsp"><span>장바구니</span></a>&ensp; |&ensp;
+			<a href="/JaAhCamping/member/memberInfoForm.jsp"><span><%=memberId %>님</span></a>&ensp; |&ensp;
+			<a href="/JaAhCamping/logon/memberLogout.jsp"><span>로그아웃</span></a>&ensp; |&ensp;
+			<a href="/JaAhCamping/mall/cart/cartList.jsp"><span>장바구니</span></a>&ensp; |&ensp;
 		<%} %>
 		<a href="#">고객센터</a>&nbsp;|&nbsp;
 		<a href="#">커뮤니티</a>
@@ -64,71 +64,71 @@ String memberId = (String)session.getAttribute("memberId");
 	
 	<nav class="menu">
 		<ul class="m_menu">
-			<li class="m_m_list"><a href="#">텐트/타프</a>
+			<li class="m_m_list"><a href="/JaAhCamping/mall/shopAll.jsp?product_kind=110">텐트/타프</a>
 				<div class="s_menu">
 					<ul>
-						<li class="s_m_list"><a href="#">텐트</a></li>
-						<li class="s_m_list"><a href="shopAll.jsp?product_kind=120">텐트관련품</a></li>
-						<li class="s_m_list"><a href="#">타프</a></li>
-						<li class="s_m_list"><a href="#">폴대/펙/스트링/스토퍼</a></li>
-						<li class="s_m_list"><a href="#">공구</a></li>
-						<li class="s_m_list"><a href="#">기타(텐트/타프)</a></li>
+						<li class="s_m_list"><a href="/JaAhCamping/mall/shopAll.jsp?product_kind=110">텐트</a></li>
+						<li class="s_m_list"><a href="/JaAhCamping/mall/shopAll.jsp?product_kind=120">텐트관련품</a></li>
+						<li class="s_m_list"><a href="/JaAhCamping/mall/shopAll.jsp?product_kind=130">타프</a></li>
+						<li class="s_m_list"><a href="/JaAhCamping/mall/shopAll.jsp?product_kind=140">폴대/펙/스트링/스토퍼</a></li>
+						<li class="s_m_list"><a href="/JaAhCamping/mall/shopAll.jsp?product_kind=150">공구</a></li>
+						<li class="s_m_list"><a href="/JaAhCamping/mall/shopAll.jsp?product_kind=160">기타(텐트/타프)</a></li>
 					</ul>
 				</div>
 			</li>
-			<li class="m_m_list"><a href="#">의자/테이블/침대</a>
+			<li class="m_m_list"><a href="/JaAhCamping/mall/shopAll.jsp?product_kind=210">의자/테이블/침대</a>
 				<div class="s_menu">
 					<ul>
-						<li class="s_m_list"><a href="#">의자</a></li>
-						<li class="s_m_list"><a href="#">테이블</a></li>
-						<li class="s_m_list"><a href="#">선반/수납가구</a></li>
-						<li class="s_m_list"><a href="#">야전침대</a></li>
-						<li class="s_m_list"><a href="#">퍼니쳐</a></li>
-						<li class="s_m_list"><a href="#">기타(의자/테이블/침대)</a></li>
+						<li class="s_m_list"><a href="/JaAhCamping/mall/shopAll.jsp?product_kind=210">의자</a></li>
+						<li class="s_m_list"><a href="/JaAhCamping/mall/shopAll.jsp?product_kind=220">테이블</a></li>
+						<li class="s_m_list"><a href="/JaAhCamping/mall/shopAll.jsp?product_kind=230">선반/수납가구</a></li>
+						<li class="s_m_list"><a href="/JaAhCamping/mall/shopAll.jsp?product_kind=240">야전침대</a></li>
+						<li class="s_m_list"><a href="/JaAhCamping/mall/shopAll.jsp?product_kind=250">퍼니쳐</a></li>
+						<li class="s_m_list"><a href="/JaAhCamping/mall/shopAll.jsp?product_kind=260">기타(의자/테이블/침대)</a></li>
 					</ul>
 				</div>
 			</li>
-			<li class="m_m_list"><a href="#">버너/코펠/취사용품</a>
+			<li class="m_m_list"><a href="/JaAhCamping/mall/shopAll.jsp?product_kind=310">버너/코펠/취사용품</a>
 				<div class="s_menu">
 					<ul>
-						<li class="s_m_list"><a href="#">버너</a></li>
-						<li class="s_m_list"><a href="#">코펠</a></li>
-						<li class="s_m_list"><a href="#">취사용품</a></li>
-						<li class="s_m_list"><a href="#">식기류</a></li>
-						<li class="s_m_list"><a href="#">기타(버터/코펠/취사용품)</a></li>
+						<li class="s_m_list"><a href="/JaAhCamping/mall/shopAll.jsp?product_kind=310">버너</a></li>
+						<li class="s_m_list"><a href="/JaAhCamping/mall/shopAll.jsp?product_kind=320">코펠</a></li>
+						<li class="s_m_list"><a href="/JaAhCamping/mall/shopAll.jsp?product_kind=330">취사용품</a></li>
+						<li class="s_m_list"><a href="/JaAhCamping/mall/shopAll.jsp?product_kind=340">식기류</a></li>
+						<li class="s_m_list"><a href="/JaAhCamping/mall/shopAll.jsp?product_kind=350">기타(버터/코펠/취사용품)</a></li>
 					</ul>
 				</div>
 			</li>
-			<li class="m_m_list"><a href="#">랜턴/난로</a>
+			<li class="m_m_list"><a href="/JaAhCamping/mall/shopAll.jsp?product_kind=410">랜턴/난로</a>
 				<div class="s_menu">
 					<ul>
-						<li class="s_m_list"><a href="#">랜턴</a></li>
-						<li class="s_m_list"><a href="#">후레쉬</a></li>
-						<li class="s_m_list"><a href="#">난로</a></li>
-						<li class="s_m_list"><a href="#">액세서리</a></li>
-						<li class="s_m_list"><a href="#">기타(랜턴/난로)</a></li>
+						<li class="s_m_list"><a href="/JaAhCamping/mall/shopAll.jsp?product_kind=410">랜턴</a></li>
+						<li class="s_m_list"><a href="/JaAhCamping/mall/shopAll.jsp?product_kind=420">후레쉬</a></li>
+						<li class="s_m_list"><a href="/JaAhCamping/mall/shopAll.jsp?product_kind=430">난로</a></li>
+						<li class="s_m_list"><a href="/JaAhCamping/mall/shopAll.jsp?product_kind=440">액세서리</a></li>
+						<li class="s_m_list"><a href="/JaAhCamping/mall/shopAll.jsp?product_kind=450">기타(랜턴/난로)</a></li>
 					</ul>
 				</div>
 			</li>
-			<li class="m_m_list"><a href="#">화로/바베큐</a>
+			<li class="m_m_list"><a href="/JaAhCamping/mall/shopAll.jsp?product_kind=510">화로/바베큐</a>
 				<div class="s_menu">
 					<ul>
-						<li class="s_m_list"><a href="#">화로대</a></li>
-						<li class="s_m_list"><a href="#">바베큐 그릴</a></li>
-						<li class="s_m_list"><a href="#">토치</a></li>
-						<li class="s_m_list"><a href="#">바베큐 소품</a></li>
-						<li class="s_m_list"><a href="#">기타(화로/바베큐)</a></li>
+						<li class="s_m_list"><a href="/JaAhCamping/mall/shopAll.jsp?product_kind=510">화로대</a></li>
+						<li class="s_m_list"><a href="/JaAhCamping/mall/shopAll.jsp?product_kind=520">바베큐 그릴</a></li>
+						<li class="s_m_list"><a href="/JaAhCamping/mall/shopAll.jsp?product_kind=530">토치</a></li>
+						<li class="s_m_list"><a href="/JaAhCamping/mall/shopAll.jsp?product_kind=540">바베큐 소품</a></li>
+						<li class="s_m_list"><a href="/JaAhCamping/mall/shopAll.jsp?product_kind=550">기타(화로/바베큐)</a></li>
 					</ul>
 				</div>
 			</li>
-			<li class="m_m_list"><a href="#">침낭/매트/해먹</a>
+			<li class="m_m_list"><a href="/JaAhCamping/mall/shopAll.jsp?product_kind=610">침낭/매트/해먹</a>
 				<div class="s_menu">
 					<ul>
-						<li class="s_m_list"><a href="#">침낭</a></li>
-						<li class="s_m_list"><a href="#">베개/쿠션/방석</a></li>
-						<li class="s_m_list"><a href="#">매트</a></li>
-						<li class="s_m_list"><a href="#">해먹</a></li>
-						<li class="s_m_list"><a href="#">기타(침낭/매트/해먹)</a></li>
+						<li class="s_m_list"><a href="/JaAhCamping/mall/shopAll.jsp?product_kind=610">침낭</a></li>
+						<li class="s_m_list"><a href="/JaAhCamping/mall/shopAll.jsp?product_kind=620">베개/쿠션/방석</a></li>
+						<li class="s_m_list"><a href="/JaAhCamping/mall/shopAll.jsp?product_kind=630">매트</a></li>
+						<li class="s_m_list"><a href="/JaAhCamping/mall/shopAll.jsp?product_kind=640">해먹</a></li>
+						<li class="s_m_list"><a href="/JaAhCamping/mall/shopAll.jsp?product_kind=650">기타(침낭/매트/해먹)</a></li>
 					</ul>
 				</div>
 			</li>

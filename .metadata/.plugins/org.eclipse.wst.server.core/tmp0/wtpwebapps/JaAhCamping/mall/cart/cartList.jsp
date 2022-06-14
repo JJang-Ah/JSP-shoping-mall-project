@@ -52,7 +52,7 @@
 .td4 input[type=number]::-webkit-outer-spin-button { -webkit-appearance: "Always Show Up/Down Arrows"; opacity: 1;}
 /* .td4 input[type=sumbmit] */
 .td4 input[type="button"] { width: 55px; height: 25px; border: 1px solid gray; border-radius: 2px; font-size: 0.8em; cursor: pointer;}
-.td7 input[type="button"] { width: 100px; height: 30px; border: none; border-radius: 3px;  font-weight: bold; cursor: pointer;}
+.td7 input[type="button"] { width: 100px; height: 30px; border: 1px solid #444444; border-radius: 3px;  font-weight: bold; cursor: pointer;}
 
 .td7 .btn_buy_one { background: #444444; border: 1px solid gray; margin-bottom: 5px; color: white;}
 .td7 .btn_delete_one { background: white; border: 1px solid black; color: black;}
@@ -62,7 +62,7 @@
 .d4 span { font-size: 0.9em; font-weight: bold; color: gray; margin-right: 10px;}
 .d4 input[type=button] { width: 80px; height: 30px; border: none; border-radius: 3px; color: #fff; font-weight: bold; cursor: pointer;}
 .d4 #btn_buy_select2 { background: #444444; border: 1px solid #32708d; margin-right: 5px;}
-.d4 #btn_delete_select2 { background: white; border: 1px solid black; color: black;}
+.d4 #btn_delete_select2 { background: white; border: 1px solid #444444; color: black;}
 
 /* 하단 - 총 상품금액 테이블 */
 .t_cart_tot { width: 90%; border: 1px solid gray; border-collapse: collapse; margin: 0 auto; text-size: 0.9em;
@@ -95,7 +95,7 @@
  .d5 { width: 90%; padding: 0 15px; margin: 0 45px 30px; text-align: center}
  .d5 input[type=button] { width: 150px; height: 50px; font-size: 1.05em; font-weight: bold; color: #fff; border-radius: 5px; cursor: pointer;}
  .d5 #btn_buy_select3 { background: #444444; border: 1px solid #3a85c8; color: white;}
- .d5 #btn_shop { background: white; border: 1px solid #3a85c8; color: black;}
+ .d5 #btn_shop { background: white; border: 1px solid #000; color: black;}
  .d_line2 { clear: both; width: 90%; border: 1px solid lightgray; margin-bottom: 20px;}
  
 </style>
@@ -305,24 +305,24 @@ int p_count = 0; // 주문 상품 총 개수
 			<input type="button" value="주문" id="btn_buy_select2">
 			<input type="button" value="삭제" id="btn_delete_select2">
 		</div>
-		<table class="t_cart_tot">
-			<tr>
-				<th>총 상품금액<br><span class="s1"><%=p_tot %></span>원</th>
-				<th><img src="../../icons/plus.PNG" width="60"></th>
-				<th>총 추가금액<br><span class="s2"><%=0 %></span>원</th>
-				<th><img src="../../icons/minus.PNG" width="60"></th>
-				<th>총 할인금액<br><span class="s3"><%=p_tot2%></span>원</th>
-				<th><img src="../../icons/equal.PNG" width="60"></th>
-				<th>최종 결제금액<br><span class="s4"><%=p_tot3 %></span>원</th>
-			</tr>
-			<tr>
-				<th colspan="7">
-					<span>정가: <b><%=df.format(p_tot) %></b>원</span><br>
-					<span>할인: <b><%=p_tot3 %></b>원</span><br>
-					<span><%=k_count %>종  (<%=p_count %>)개</span>
-				</th>
-			</tr>
-		</table>
+<!-- 		<table class="t_cart_tot"> -->
+<!-- 			<tr> -->
+<%-- 				<th>총 상품금액<br><span class="s1"><%=p_tot %></span>원</th> --%>
+<!-- 				<th><img src="../../icons/plus.PNG" width="60"></th> -->
+<%-- 				<th>총 추가금액<br><span class="s2"><%=0 %></span>원</th> --%>
+<!-- 				<th><img src="../../icons/minus.PNG" width="60"></th> -->
+<%-- 				<th>총 할인금액<br><span class="s3"><%=p_tot2%></span>원</th> --%>
+<!-- 				<th><img src="../../icons/equal.PNG" width="60"></th> -->
+<%-- 				<th>최종 결제금액<br><span class="s4"><%=p_tot3 %></span>원</th> --%>
+<!-- 			</tr> -->
+<!-- 			<tr> -->
+<!-- 				<th colspan="7"> -->
+<%-- 					<span>정가: <b><%=df.format(p_tot) %></b>원</span><br> --%>
+<%-- 					<span>할인: <b><%=p_tot3 %></b>원</span><br> --%>
+<%-- 					<span><%=k_count %>종  (<%=p_count %>)개</span> --%>
+<!-- 				</th> -->
+<!-- 			</tr> -->
+<!-- 		</table> -->
 		<table class="t_cart_address">
 			<tr>
 				<th>배송일 안내<br><input type="button" value="배송안내"></th>
