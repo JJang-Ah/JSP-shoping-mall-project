@@ -13,9 +13,10 @@
 #product_kindName { text-align: center; margin-bottom: 20px; font-size: 40px; font-weight: bold;}
 .d_kind2 { text-align: center; margin-bottom: 20px;}
 /*상품 나열 */
-.c_product { display: inline-block; width: 240px; height: 350px; margin: 10px; padding: 15px; position: relative;}
+.c_product { display: inline-block; width: 240px; height: 380px; margin: 10px; padding: 15px; position: relative; float: left;}
 .c_p2 { font-weight: bold; display: inline;}
 .c_p2 span {overflow: hidden;}
+.c_p3 { position: absolute; bottom: 20px;}
 .c_p3_price { font-size: 1.1em; font-weight: bold;}
 .s_p_discount { color: red; font-weight: bold; font-size: 0.8em;}
 
@@ -60,6 +61,9 @@ figcaption div:hover {
 .pBox_c { background: #495057; color: white; font-weight: bold; border-radius: 10px;}
 .pBox_b { font-weight: 900;}
 
+.clear_bar { clear: both;}
+
+
 </style>
 <script>
 
@@ -77,7 +81,7 @@ if(product_kind == null) product_kind = "110";
 
 //################ 페이징(paging) 처리 
 //페이징(paging) 처리를 위한 변수 선언
-int pageSize = 8; // 1페이지에 12건의 게시글을 표시
+int pageSize = 12; // 1페이지에 12건의 게시글을 표시
 String pageNum = request.getParameter("pageNum");
 if(pageNum == null) pageNum = "1";
 
@@ -150,8 +154,7 @@ case "660": product_kindName = "기타(침낭/매트/해먹)"; break;
 			<a href="shopContent.jsp?product_id=<%=product.getProduct_id()%>">
 				<div class="c_p1"><img src="/images/<%=product.getProduct_image()%>" width="250" height="280"></div>
 				<div class="c_p2"><span title="<%=product.getProduct_name()%>"><%=product.getProduct_name() %></span></div>
-<%-- 				<div class="c_p3"><span title="<%=product.getBrand()%>"><%=product.getBrand() %></span></div> --%>
-				<div class="c_p3"><span class="c_p3_price" title="<%=product.getProduct_price()%>"><%=product.getProduct_price()/100*(100-product.getDiscount_rate()) %>원</span>
+				<div class="c_p3"><span class="c_p3_price" title="<%=product.getProduct_price()%>"><%=df.format(product.getProduct_price()/100*(100-product.getDiscount_rate())) %>원</span>
 				  <span class="s_p_discount">(<span class="s_p_discount_1"><%=product.getDiscount_rate() %>%할인</span>)</span></div>
 			</a>
 			<figcaption>
@@ -160,6 +163,7 @@ case "660": product_kindName = "기타(침낭/매트/해먹)"; break;
 			
 		</div><% } %>
 	</div>
+	<hr class="clear_bar">
 
 	   <%-- 페이징 처리 --%>
 	   <div id="paging">
@@ -210,7 +214,6 @@ case "660": product_kindName = "기타(침낭/매트/해먹)"; break;
 	   }
 	   %>
 	   </div>
-
 </div>
 </body>
 </html>

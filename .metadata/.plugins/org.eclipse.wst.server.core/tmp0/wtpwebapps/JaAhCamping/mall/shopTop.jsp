@@ -12,7 +12,7 @@
 #container { width: 1200px; margin: 20px auto;}
 /* 상단 */
 a { text-decoration: none; color: black;}
-.t_box1 { text-align: right;}
+.t_box1 { text-align: right; margin-bottom: 10px; padding-bottom: 10px; color: gray;}
 .t_box1 #admin_page { display: inline-block; float: left;}
 .t_box1 .user_menu { display: inline-block; float: right; color: gray;}
 .h_line { clear: both; border: 1px solid lightgray; margin-top: 20px;}
@@ -43,7 +43,7 @@ String memberId = (String)session.getAttribute("memberId");
 <div id="container">
 
 	<div class="t_box1"> <%--  --%>
-		<div id="admin_page"><a href="http://localhost:8088/JaAhCamping/manager/managerMain.jsp">관리자 페이지</a></div>
+		<div id="admin_page"><a href="/JaAhCamping/manager/managerMain.jsp">관리자 페이지</a></div>
 		<div class="user_menu">
 		<%if(memberId == null) {  %>
 			<a href="http://localhost:8088/JaAhCamping/logon/memberLoginForm.jsp"><span>로그인</span></a>&ensp; |&ensp;

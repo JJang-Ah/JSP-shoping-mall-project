@@ -17,6 +17,9 @@
 .new_items {text-align: center;}
 .new_items div { margin: 10px auto;}
 .new_items img { width: 200px; height: 250px;}
+.add_list { margin-top: 40px; margin-bottom: 20px; height: 380px; padding-left: 100px;}
+.add_list img { float: left;}
+.clear { clear: both; visibility: hidden;}
 </style>
 <script>
 
@@ -67,6 +70,16 @@ List<ProductDTO> goodProductList = productDAO.getGoodProductList();
 				<%}%>
 				</div>
 			</div>
+		</main>
+					
+		<div class="add_list">
+			<a href="/JaAhCamping/mall/shopContent.jsp?product_id=15"><img src="/JaAhCamping/add/all_add01.jpg"></a>
+			<a href="/JaAhCamping/mall/shopContent.jsp?product_id=45"><img src="/JaAhCamping/add/all_add02.jpg"></a>
+			<a href="/JaAhCamping/mall/shopContent.jsp?product_id=47"><img src="/JaAhCamping/add/all_add04.jpg"></a>
+			<a href="/JaAhCamping/mall/shopContent.jsp?product_id=46"><img src="/JaAhCamping/add/all_add03.jpg"></a>
+			<a href="/JaAhCamping/mall/shopContent.jsp?product_id=48"><img src="/JaAhCamping/add/all_add05.png"></a>
+		</div>	
+		<hr class="clear">
 			
 		<jsp:include page="shopMain.jsp"></jsp:include>
 	</div>
