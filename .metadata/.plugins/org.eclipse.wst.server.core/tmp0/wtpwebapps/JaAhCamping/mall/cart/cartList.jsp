@@ -2,7 +2,7 @@
 <%@page import="java.text.SimpleDateFormat"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ page import="cart.*, java.util.*, mall.member.*" %>
+<%@ page import="mall.cart.*, java.util.*, mall.member.*" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -101,11 +101,11 @@
 </style>
 
 <script>
-document.addEventListener("DOMContentLoaded",function(){
+document.addEventListener("DOMContentLoaded", function() {
 	let form = document.cartForm;
-	let cart_ids = document.getElementsByName("cart_id");
+	let cart_ids = document.getElementsByName("cart_id"); // 카트 아이디 태그의 배열
 	
-	// 주문, 삭제 버튼
+	// 주문, 삭제, 쇼핑계속하기 버튼
 	let btn_buy_select = document.getElementById("btn_buy_select");
 	let btn_buy_select2 = document.getElementById("btn_buy_select2");
 	let btn_buy_select3 = document.getElementById("btn_buy_select3");
@@ -113,37 +113,36 @@ document.addEventListener("DOMContentLoaded",function(){
 	let btn_delete_select2 = document.getElementById("btn_delete_select2");
 	let btn_shopping = document.getElementById("btn_shopping");
 	
-	
-	// 구매 수량 제한 효과(1~100)
+	// 구매 수량 제한 효과 (1 ~ 100)
 	let buy_counts = document.querySelectorAll(".buy_count");
-	for(let buy_count of buy_counts){
-		buy_count.addEventListener("keyup", function(){
-			if(buy_count.value < 1 ){
+	for(let buy_count of buy_counts) {
+		buy_count.addEventListener("keyup", function() {
+			if(buy_count.value < 1) {
 				buy_count.value = 1;
-			}else if(buy_count.value > 100){
-				buy_count.value = 100;
+			} else if(buy_count.value > 100) {
+				buy_count.value = 100;	
 			}
 		})
 	}
 	
 	// 각 상품별 삭제 버튼 처리(1개 상품)
-	
 	let btn_delete_ones = document.querySelectorAll(".btn_delete_one");
-	for(let i=0; i<btn_delete_ones.length; i++){
-		btn_delete_ones[i].addEventListener("click",function(){
+	for(let i=0; i<btn_delete_ones.length; i++) {
+		btn_delete_ones[i].addEventListener("click", function() {
 			location = 'cartDeletePro.jsp?cart_id=' + cart_ids[i].value;
 		})
 	}
 	
-	// 각 상품별 주문 버튼 처리(1개)
+	// 각 상품별 주문 버튼 처리(1개 상품)
 	let btn_buy_ones = document.querySelectorAll(".btn_buy_one");
-	for(let i = 0; i < btn_buy_ones.length; i++){
-		btn_buy_ones[i].addEventListener("click",function(){
-			location = '../buy/buyForm.jsp?cart_id=' + cart_ids[i].value;
+	for(let i=0; i<btn_buy_ones.length; i++) {
+		btn_buy_ones[i].addEventListener("click", function() {
+			location = '../buy/buyForm.jsp?cart_id=' + cart_ids[i].value + "&part=3";
 		})
 	}
+	
 	////////////////////
-	// 판매가 계산(원가에서 할인된 가격)
+	// 판매가 계산 (원가에서 할인된 가격)
 	let p_sums = document.getElementsByName("p_sum");
 	let p_s1 = 0;
 	let c1_s1 = document.querySelector(".c1_s1");
@@ -155,7 +154,7 @@ document.addEventListener("DOMContentLoaded",function(){
 	let p_s2 = 0;
 	let c1_s2 = document.querySelector(".c1_s2");
 	
-	// 할인가 계산
+	// 할인 금액 계산
 	let p_sums3 = document.getElementsByName("p_sum3");
 	let p_s3 = 0;
 	let c1_s3 = document.querySelector(".c1_s3");
@@ -166,22 +165,20 @@ document.addEventListener("DOMContentLoaded",function(){
 	let c1_s4 = document.querySelector(".c1_s4");
 	let c1_s5 = document.querySelector(".c1_s5");
 	
-	////////////////////////////////
 	// 전체 선택 체크박스 처리
-	let cart_ids_list = []; // 카트 아이디를 저장하는 배열
-	let ck_count = 0; // 각 상품별 체크박스의 체크 개수
+	let cart_ids_list = []; // 체크박스 선택과 해제시에 카트 아이디를 저장하는 배열
+	let ck_count = 0;       // 각 상품별 체크박스의 체크 개수
 	let ck_cart_ones = document.querySelectorAll(".ck_cart_one");
 	let ck_cart_all = document.getElementById("ck_cart_all");
-	
-	ck_cart_all.addEventListener("change",function(){
+	ck_cart_all.addEventListener("change", function() {
 		p_s1 = 0;
 		p_s2 = 0;
 		p_s3 = 0;
 		k_count = 0;
 		p_count = 0;
-		if(ck_cart_all.checked == true){ // 전체 선택을 체크하였을 때 -> 하위의 모든 체크박스를 선택
+		if(ck_cart_all.checked == true) { // 전체 선택을 체크하였을 때 -> 각 상품별 모든 체크박스를 선택
 			ck_count = ck_cart_ones.length;
-			for(let i = 0; i < ck_cart_ones.length; i++){
+			for(let i=0; i<ck_cart_ones.length; i++) {
 				ck_cart_ones[i].checked = true;
 				cart_ids_list.push(cart_ids[i].value);
 				p_s1 += parseInt(p_sums[i].value);
@@ -190,37 +187,39 @@ document.addEventListener("DOMContentLoaded",function(){
 				++k_count;
 				p_count += parseInt(buy_counts[i].value);
 			}
-		}else{ // 전체 선택을 해제해였을 때 -> 하위의 모든 체크박스를 해제
+		} else {                          // 전체 선택을 해제하였을 때 -> 각 상품별 모든 체크박스를 해제
 			ck_count = 0;
 			cart_ids_list = [];
-			for(let i=0; i<ck_cart_ones.length; i++){
+			for(let i=0; i<ck_cart_ones.length; i++) {
 				ck_cart_ones[i].checked = false;
 			}
 		}
-		c1_s1.innerHTML = p_s1.toLocaleString() + '원';
-		c2_s1.innerHTML = p_s2.toLocaleString() + '원';
-		c3_s1.innerHTML = p_s1.toLocaleString() + '원';
-		c1_s2innerHTML = p_s1.toLocaleString() + '원';
-		c1_s3.innerHTML = p_s1.toLocaleString() + '원';
-		
 		cart_ids_list = [...new Set(cart_ids_list)]; // 중복 카트 아이디를 제거
+		c1_s1.innerHTML = p_s1.toLocaleString() + '원';
+		c2_s1.innerHTML = p_s1.toLocaleString() + '원';
+		c3_s1.innerHTML = p_s1.toLocaleString() + '원';
+		c1_s2.innerHTML = p_s2.toLocaleString() + '원';
+		c1_s3.innerHTML = p_s3.toLocaleString() + '원';
+		c1_s4.innerHTML = k_count + '종';
+		c1_s5.innerHTML = p_count + '개';
 		console.log(cart_ids_list);
 	})
+	
 	// 각 상품별 체크박스 처리
-	// 각 상품별 체크박스 중에서 해제된 것이 있다면 전체 선택 체크박스를 헤제
+	// 각 상품별 체크박스 중에서 해제된 것이 있다면 전체 선택 체크박스를 해제
 	// 각 상품별 체크박스가 모두 체크되었다면 전체 선택 체크박스를 선택
-	for(let i = 0; i<ck_cart_ones.length; i++){
-		ck_cart_ones[i].addEventListener("change",function(){
-			if(ck_cart_ones[i].checked == false ){ // 체크 해제
+	for(let i=0; i<ck_cart_ones.length; i++) {
+		ck_cart_ones[i].addEventListener("change", function(event) {
+			if(ck_cart_ones[i].checked == false) { // 체크 해제
 				ck_cart_all.checked = false;
 				--ck_count;
-				cart_ids_list = cart_ids_list.filter((e) => e !== cart_ids[i].value);
+				cart_ids_list = cart_ids_list.filter((e) => e !== cart_ids[i].value); // 해제되지 않은 카트 아이디를 다시 저장
 				p_s1 -= parseInt(p_sums[i].value);
 				p_s2 -= parseInt(p_sums2[i].value);
 				p_s3 -= parseInt(p_sums3[i].value);
 				--k_count;
 				p_count -= parseInt(buy_counts[i].value);
-			}else{ // 체크 선택
+			} else { // 체크 선택
 				++ck_count;
 				cart_ids_list.push(cart_ids[i].value);
 				p_s1 += parseInt(p_sums[i].value);
@@ -229,13 +228,13 @@ document.addEventListener("DOMContentLoaded",function(){
 				++k_count;
 				p_count += parseInt(buy_counts[i].value);
 			}
-			if(ck_count == ck_cart_ones.length){
+
+			if(ck_count == ck_cart_ones.length) {
 				ck_cart_all.checked = true;
 			}
 			c1_s1.innerHTML = p_s1.toLocaleString() + '원';
 			c2_s1.innerHTML = p_s1.toLocaleString() + '원';
 			c3_s1.innerHTML = p_s1.toLocaleString() + '원';
-			
 			c1_s2.innerHTML = p_s2.toLocaleString() + '원';
 			c1_s3.innerHTML = p_s3.toLocaleString() + '원';
 			c1_s4.innerHTML = k_count + '종';
@@ -245,57 +244,61 @@ document.addEventListener("DOMContentLoaded",function(){
 	}
 	
 	// 삭제 버튼 처리
-	btn_delete_select.addEventListener("click", function(){
-		if(ck_count==0){
+	btn_delete_select.addEventListener("click", function() {
+		if(ck_count == 0) {
 			alert('장바구니에 상품이 없습니다.');
 			return;
 		}
-		location = 'cartDeletePro2.jsp?cart_ids_list=' + cart_ids_list;
+		location = 'cartDeletePro2.jsp?cart_id=' + cart_ids_list;
 	})
 	
-	btn_delete_select2.addEventListener("click",function(){
-		if(ck_count==0){
+	btn_delete_select2.addEventListener("click", function() {
+		if(ck_count == 0) {
 			alert('장바구니에 상품이 없습니다.');
 			return;
 		}
-		location = 'cartDeletePro2.jsp?cart_ids_list=' + cart_ids_list;
+		location = 'cartDeletePro2.jsp?cart_id=' + cart_ids_list;
 	})
 	
 	// 주문 버튼 처리
-	btn_buy_select.addEventListener("click",function(){
-		if(ck_count==0){
+	btn_buy_select.addEventListener("click", function() {
+		if(ck_count == 0) {
 			alert('장바구니에 상품이 없습니다.');
 			return;
 		}
-		location = '../buy/buyForm.jsp?cart_ids_list=' + cart_ids_list;
+		location = '../buy/buyForm.jsp?cart_id=' + cart_ids_list + "&part=3";
 	})
-	btn_buy_select2.addEventListener("click",function(){
-		if(ck_count==0){
+	
+	btn_buy_select2.addEventListener("click", function() {
+		if(ck_count == 0) {
 			alert('장바구니에 상품이 없습니다.');
 			return;
 		}
-		location = '../buy/buyForm.jsp?cart_ids_list=' + cart_ids_list;
+		location = '../buy/buyForm.jsp?cart_id=' + cart_ids_list + "&part=3";
 	})
-	btn_buy_select3.addEventListener("click",function(){
-		if(ck_count==0){
+	
+	btn_buy_select3.addEventListener("click", function() {
+		if(ck_count == 0) {
 			alert('장바구니에 상품이 없습니다.');
 			return;
 		}
-		location = '../buy/buyForm.jsp?cart_ids_list=' + cart_ids_list;
+		location = '../buy/buyForm.jsp?cart_id=' + cart_ids_list + "&part=3";
 	})
 	
 	// 쇼핑계속하기 버튼 처리
-	btn_shopping.addEventListener("click", function(){
+	btn_shopping.addEventListener("click", function() {
 		location = '../shopAll.jsp';
 	})
+			
 })
 </script>
 </head>
 <body>
 <%
 String memberId = (String)session.getAttribute("memberId");
-if(memberId == null){
-	out.print("<script>alert('로그인을 해주세요');");
+
+if(memberId == null) { 
+	out.print("<script>alert('로그인을 해주세요.');");
 	out.print("location='../../logon/memberLoginForm.jsp';</script>");
 	return;
 }
@@ -303,74 +306,72 @@ if(memberId == null){
 SimpleDateFormat sdf = new SimpleDateFormat("MM월 dd일");
 DecimalFormat df = new DecimalFormat("#,###,###");
 
-//회원 DB 연결 질의 -> 주소 정보 활용
+// 회원 DB 연결 질의 -> 주소 정보 활용
 MemberDAO memberDAO = MemberDAO.getInstance();
 MemberDTO member = memberDAO.getMember(memberId);
 
 String address = member.getAddress();
-String local = address.substring(0,2); // 주소에서 2글자만 추출
+String local = address.substring(0, 2); // 주소에서 지역 2글자만 추출, ex) 서울, 경기, 대구, 제주 ...
 
-
-//배송 날짜 계산과 포맷
-//규칙1. 서울: 다음날 배송, 경기: 2일 안에 배송, 지방: 3일 안에 배송, 제주도 : 5일 안에 배송.
-//규칙2. 토요일, 일요일 제외
-//현재날짜와 시간, 요일 판단, 주소 판단
-
+// 배송 날짜 계산과 포맷
+// 규칙1. 서울: 다음날 배송, 경기: 2일 안에 배송, 지방: 3일 안에 배송, 제주도 지역: 5일 안에 배송.
+// 규칙2. 토요일, 일요일은 제외.
+// 현재날짜와 시간, 주소 판단, 요일 판단
 int n = 0; // 추가되는 날짜
 Calendar c = Calendar.getInstance();
-int w = c.get(Calendar.DAY_OF_WEEK); // 요일1~7, 1:일, 2:월, 3:화, 4:수, 5:목, 6:금, 7:토
+int w = c.get(Calendar.DAY_OF_WEEK); // 요일 1~7, 1:일, 2:월, 3:화, 4:수, 5:목, 6:금, 7:토
 
-switch(local){
-	case "서울": 
-		if(w >= 2 && w<=5) ++n;
-		else if(w == 6 || w == 7) n += 3;
-		else if(w == 7) n += 2;
-		break;
-	case "경기":
-		if(w >= 2 && w<= 4) n += 2;
-		else if(w >=5 && w <= 7) n += 4;
-		else if(w == 1) n += 3;
-		break;
-	case "제주":
-		n += 7;	
-		break;
-	default: // 지방
-		if(w == 2 || w == 3) n += 3;
-		else if(w >= 4 && w <= 7) n += 5;
-		else if(w == 1) n += 4;
-		break;
+switch(local) {
+case "서울":
+	if(w >= 2 && w <= 5) ++n;
+	else if(w == 6 || w == 7) n += 3;
+	else if(w == 1) n += 2;  
+	break;
+case "경기":
+	if(w >= 2 && w <= 4) n += 2;
+	else if(w >= 5 && w <= 7) n += 4;
+	else if(w == 1) n += 3;
+	break;
+case "제주":
+	n += 7;
+	break;
+default: // 지방
+	if(w == 2 || w == 3) n += 3;
+	else if(w >= 4 && w <= 7) n += 5;
+	else if(w == 1) n += 4;
+	break;
 }
 
-//추가된 일수를 더한 날짜
+// 추가된 일수를 더한 날짜
 c.add(Calendar.DATE, n);
-int month = c.get(Calendar.MONTH) + 1;  // 0~11로 표현, 1을 더해서 보정
+int month = c.get(Calendar.MONTH) + 1; // 0~11로 표현, 1을 더해서 보정
 int date = c.get(Calendar.DATE);
-int week = c.get(Calendar.DAY_OF_WEEK); // 1~7표현
-String[] weekday = {"index0","일","월","화","수","목","금","토"};
+int week = c.get(Calendar.DAY_OF_WEEK); // 1~7로 표현
+String[] weekday = {"", "일", "월", "화", "수", "목", "금", "토"};
 
-//배송일 확인
-String d_day = month + "월" + date + "일(" + weekday[week] +")요일 ";
-//System.out.println("배송일: " + month + "월" + date + "일(" + weekday[week] + "요일)");
+// 배송일 확인
+String d_day = month + "월 " + date + "일 (" + weekday[week] + ")";
+// System.out.println("배송일 : " + month + "월 " + date + "일 (" + weekday[week] + "요일)");
 
-//장바구니 DB 연결 질의
+// 장바구니 DB 연결, 질의
 CartDAO cartDAO = CartDAO.getInstance();
 List<CartDTO> cartList = cartDAO.getCartList(memberId);
 int cartListCount = cartDAO.getCartListCount(memberId);
 
-//상품 가격(정가), 할인율, 할인가격(판매가)
+// 상품가격(정가), 할인율, 할인가격(판매가)
 int product_price = 0;
 int discount_rate = 0;
 int buy_price = 0;
 int buy_count = 0;
-int p_sum = 0; // 각 상품의 합계
-int p_tot = 0; // 주문 상품의 총합계
+int p_sum = 0; // 각 상품의 합계(할인가격)
+int p_tot = 0; // 주문 상품의 총합계(할인가격)
 
 int p_sum2 = 0; // 각 상품의 합계(원가)
 int p_tot2 = 0; // 주문 상품의 총합계(원가)
 
-int d_count = 0; // 실제 할인된 금액
-int p_sum3 = 0; // 각 상품의 실제 할인된 금액의 합계
-int p_tot3 = 0; // 주문 상품의 실제 할인된 금액의 총합계
+int d_count = 0; // 실제 할인된 금액, ex) 10000원(원가), 10%할인, 9000원(할인가), 1000원(실제 할인된 금액)
+int p_sum3 = 0;  // 각 상품의 실제 할인된 금액의 합계
+int p_tot3 = 0;  // 주문 상품의 실제 할인된 금액의 총합계
 
 int k_count = 0; // 주문 상품의 종류
 int p_count = 0; // 주문 상품의 총개수
@@ -408,38 +409,42 @@ int p_count = 0; // 주문 상품의 총개수
 	
 				<%for(CartDTO cart : cartList) { 
 					product_price = cart.getProduct_price();
+					discount_rate = cart.getDiscount_rate();
 					buy_price = cart.getBuy_price();
 					buy_count = cart.getBuy_count();
-					discount_rate = cart.getDiscount_rate();
-					p_sum = buy_price * buy_count; // 각상품의 합계 (할인가격 * 주문수량)
-					p_tot += p_sum;
 					
-					p_sum2 = product_price * buy_count; // 각 상품의 합계(원가)
-					p_tot2 += p_sum2; // 총합계 (원가)
+					p_sum = buy_price *  buy_count;  // 각 상품의 합계 (할인가격)
+					p_tot += p_sum;                  // 총합계(할인가격)
 					
-					p_sum3 = product_price * discount_rate / 100 * buy_count; // 각 상품의 할인된 가격 10000 * 10 / 100
-					p_tot3 += p_sum3; 	//각 상품의 할인된 가격의 총 합계
+					p_sum2 = product_price * buy_count; // 각 상품의 합계 (원가)
+					p_tot2 += p_sum2;                   // 총합계(원가)
 					
-					++k_count;	// 주문 상품 개수
-					p_count += buy_count; // 주문 상품 총 개수
+					p_sum3 = product_price * discount_rate / 100 * buy_count; // 각 상품의 할인된 가격, ex) 10000 * 10 / 100 * 구매수량
+					p_tot3 += p_sum3;                             // 각 상품의 할인된 가격의 총합계
+					
+					++k_count;            // 주문 상품 종류
+					p_count += buy_count; // 주문 상품 총개수
 				%>
 				<form action="cartUpdatePro.jsp" method="post" name="cartForm">
 				<input type="hidden" name="cart_id" value="<%=cart.getCart_id() %>">
 				<input type="hidden" name="product_id" value="<%=cart.getProduct_id() %>">
+				<input type="hidden" name="p_sum" value="<%=p_sum %>">
+				<input type="hidden" name="p_sum2" value="<%=p_sum2 %>">
+				<input type="hidden" name="p_sum3" value="<%=p_sum3 %>">
 				<tr>
 					<td class="center td1" width="3%"><input type="checkbox" name="check_cart_one" class="ck_cart_one"></td>
 					<td class="center td2" width="8%"><img src="/images/<%=cart.getProduct_image()%>" width="60" height="90"></td>
 					<td class="left td3" width="48%">
 						<span class="s1"><a href="../shopContent.jsp?product_id=<%=cart.getProduct_id()%>"><%=cart.getProduct_name() %></a></span><br>
 						<span class="s2"><%=cart.getBrand() %></span><br>
-						<span class="s3"><%=df.format(cart.getProduct_price()) %>원</span> | <span class="s4"><%=df.format(buy_price) %> (<%=cart.getDiscount_rate() %>%)</span>
+						<span class="s3"><%=df.format(product_price) %>원</span> | <span class="s4"><%=df.format(buy_price) %> (<%=cart.getDiscount_rate() %>%)</span>
 					</td>
 					<td class="center td4" width="8%">
-						<input type="number" name="buy_count" value="<%=cart.getBuy_count()%>" class="buy_count"><br>
+						<input type="number" name="buy_count" value="<%=buy_count%>" class="buy_count"><br>
 						<input type="submit" name="btn_count" value="변경" class="btn_update">
 					</td>
 					<td class="center td5" width="9%"><%=df.format(p_sum) %>원</td>
-					<td class="center td6" width="12%">4일 이내</td>
+					<td class="center td6" width="12%"><%=d_day %>도착예정</td>
 					<td class="center td7" width="12%">
 						<input type="button" name="btn_buy_one" value="주문" class="btn_buy_one"><br>
 						<input type="button" name="btn_delete_one" value="삭제" class="btn_delete_one">
@@ -449,7 +454,7 @@ int p_count = 0; // 주문 상품의 총개수
 			<%}} %>
 			
 			<tr>
-				<td colspan="7">JaAhCamping 배송 상품 총 금액 : <b class="c1_s1"></b> 원(+배송비 <b>0원</b>)</td>
+				<td colspan="7">JaAhCamping 배송 상품 총 금액 : <b class="c1_s1"><%=df.format(p_tot) %></b> 원(+배송비 <b>0원</b>)</td>
 			</tr>
 		</table>
 		<div class="d4">
@@ -457,40 +462,25 @@ int p_count = 0; // 주문 상품의 총개수
 			<input type="button" value="주문" id="btn_buy_select2">
 			<input type="button" value="삭제" id="btn_delete_select2">
 		</div>
-		<table class="t_cart_tot">
+		
+<!-- 		<table class="t_cart_tot"> -->
 <!-- 			<tr> -->
-<%-- 				<th>총 상품금액<br><span class="s1 c2_s1"><%=p_tot %></span>원</th> --%>
-<!-- 				<th><img src="../../icons/plus.PNG" width="60"></th> -->
-<%-- 				<th>총 추가금액<br><span class="s2 c2_s2"><%=0 %></span>원</th> --%>
-<!-- 				<th><img src="../../icons/minus.PNG" width="60"></th> -->
-<%-- 				<th>총 할인금액<br><span class="s3 c2_s3"><%=p_tot2%></span>원</th> --%>
-<!-- 				<th><img src="../../icons/equal.PNG" width="60"></th> -->
-<%-- 				<th>최종 결제금액<br><span class="s4 c3_s1"><%=p_tot3 %></span>원</th> --%>
+<!-- 				<th>총 상품금액<br><span class="s1 c2_s1">0원</span></th> -->
+<!-- 				<th><img src="../../icons/plus.png" width="30"></th> -->
+<%-- 				<th>총 추가금액<br><span class="s2"><%=0 %></span>원</th> --%>
+<!-- 				<th><img src="../../icons/minus.png" width="30"></th> -->
+<%-- 				<th>총 할인금액<br><span class="s3"><%=0 %></span>원</th> --%>
+<!-- 				<th><img src="../../icons/equal.png" width="30"></th> -->
+<!-- 				<th>최종 결제금액<br><span class="s4 c3_s1">0원</span></th> -->
 <!-- 			</tr> -->
 <!-- 			<tr> -->
 <!-- 				<th colspan="7"> -->
-<%-- 					<span>정가: <b class="c1_s2"><%=df.format(p_tot) %></b>원</span><br> --%>
-<%-- 					<span>할인: <b class="c1_s3"><%=p_tot3 %></b>원</span><br> --%>
-<%-- 					<span class="c1_s4"><%=k_count %>종  (<%=p_count %>)개</span> --%>
+<!-- 					<span>정가 <b class="c1_s2">0원</b>에서 <b class="c1_s3">0원</b> 할인</span><br> -->
+<!-- 					<span>총 주문수량: <b class="c1_s4">0종</b> (<b class="c1_s5">0개</b>)</span> -->
 <!-- 				</th> -->
 <!-- 			</tr> -->
 <!-- 		</table> -->
-			<tr>
-				<th>총 상품금액<br><span class="s1 c2_s1">0원</span></th>
-				<th><img src="../../icons/plus.png" width="30"></th>
-				<th>총 추가금액<br><span class="s2"><%=0 %></span>원</th>
-				<th><img src="../../icons/minus.png" width="30"></th>
-				<th>총 할인금액<br><span class="s3"><%=0 %></span>원</th>
-				<th><img src="../../icons/equal.png" width="30"></th>
-				<th>최종 결제금액<br><span class="s4 c3_s1">0원</span></th>
-			</tr>
-			<tr>
-				<th colspan="7">
-					<span>정가 <b class="c1_s2">0원</b> 에서<b class="c1_s3">0원</b> 할인</span><br>
-					<span>총 주문수량: <b class="c1_s4">0종</b> (<b class="c1_s5">0개</b>)</span>
-				</th>
-			</tr>
-		</table>
+		
 		<table class="t_cart_address">
 			<tr>
 				<th>배송일 안내<br><input type="button" value="배송안내"></th>

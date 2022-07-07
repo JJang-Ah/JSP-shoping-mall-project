@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ page import="cart.*" %>
+<%@ page import="mall.cart.*" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -9,7 +9,7 @@
 </head>
 <body>
 <%
-request.setCharacterEncoding("utf-8");
+	request.setCharacterEncoding("utf-8");
 
 String memberId = (String)session.getAttribute("memberId");
 
@@ -18,7 +18,7 @@ if(memberId == null) {
 	out.print("location='../../logon/memberLoginForm.jsp';</script>");
 }
 %>
-<jsp:useBean id="cart" class="cart.CartDTO"></jsp:useBean>
+<jsp:useBean id="cart" class="mall.cart.CartDTO"></jsp:useBean>
 <jsp:setProperty property="*" name="cart"/>
 <%
 

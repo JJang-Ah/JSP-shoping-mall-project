@@ -91,6 +91,14 @@ margin: 0px 20px; text-align: center; line-height: 30px; border-radius: 5px; col
 				buy_count.value = 100;
 			}
 		})
+		
+		// 구매하기 버튼
+		let btn_buy = document.getElementById("btn_buy");
+		btn_buy.addEventListener("click", function() {
+			location = "buy/buyForm.jsp?product_id="+form.product_id.value+"&buy_count="+form.buy_count.value+"&part=2";
+		})
+		
+		
 		// 하단 - 상세설명, 상품리뷰 변환 효과
 		let s3_c2 = document.querySelector(".s3_c2");
 		let s3_c3 = document.querySelector(".s3_c3");
