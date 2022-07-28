@@ -21,7 +21,8 @@ public class CartDAO {
 	// 장바구니 등록
 	public int insertCart(CartDTO cart) {
 		String sql = "insert into cart(buyer, product_id, product_name, brand,"
-				+ " product_price, discount_rate,  buy_price, buy_count, product_image) values(?, ?, ?, ?, ?, ?, ?, ?, ?)";
+				+ " product_price, discount_rate,  buy_price, buy_count, product_image)"
+				+ " values(?, ?, ?, ?, ?, ?, ?, ?, ?)";
 		
 		int check = 0;
 		

@@ -197,7 +197,8 @@ public class BuyDAO {
 	// 구매목록 날짜별 검색, buySearchPro.jsp
 	public List<BuyDTO> getBuyListSearch(String period1, String period2, String buyer) {
 		String sql = "select * from buy where buyer = ? "
-				+ "and date_format(buy_date, '%Y-%m-%d') >= ? and date_format(buy_date, '%Y-%m-%d') <= ? order by buy_date desc";
+				+ "and date_format(buy_date, '%Y-%m-%d') >= ? and date_format(buy_date, '%Y-%m-%d') <= ?"
+				+ " order by buy_date desc";
 		List<BuyDTO> buyListSearch = new ArrayList<BuyDTO>();
 		BuyDTO buy = null;
 		
